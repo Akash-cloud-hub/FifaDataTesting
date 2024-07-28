@@ -37,5 +37,42 @@ ic(player_salary.head())
 player_salary= player_salary.sort_values(by=['wage_eur'], ascending=False)
 ic(player_salary.head())
 
-plt.bar(list(player_salary['short_name'][0:5]) , list(player_salary['wage_eur'][0:5]) )
-plt.show()
+# create a bar graph for the top 5 highest wages
+plt.bar(list(player_salary['short_name'][0:5]) , list(player_salary['wage_eur'][0:5]) , color=['green','orange','blue','pink','black'] )
+# plt.show()
+plt.clf()
+
+german_players = fifa[fifa['nationality']=='Germany']
+ic(german_players)
+# sort german players by there height
+
+german_players = german_players.sort_values(by=['height_cm'],ascending=True)
+ic(german_players[['short_name','height_cm']].head())
+
+# sort the german players by there weight
+german_players = german_players.sort_values(by=['weight_kg'],ascending=False)
+ic(german_players[['short_name','weight_kg']].head())
+
+# store the short name and shooting capabilities in a variable
+
+stats = fifa[['short_name','shooting']]
+stats = stats.sort_values(by=['shooting'],ascending=False)
+ic(stats.head())
+
+# create a variable that contains , name , nationality , club , defending capabilities
+defense = fifa[['short_name','nationality','club','defending']]
+defense = defense.sort_values(by=['defending'] , ascending = False)
+ic(defense.head())
+
+# get data of all real madrid players
+real_madrid = fifa[fifa['club']=='Real Madrid']
+real_madrid_wage = real_madrid.sort_values(by='wage_eur',ascending = False )
+ic(real_madrid_wage[['short_name' , 'wage_eur']].head())
+
+real_madrid = fifa[fifa['club']=='Real Madrid']
+real_madrid_shooting = real_madrid.sort_values(by='shooting',ascending = False )
+ic(real_madrid_shooting[['short_name' , 'wage_eur']].head())
+
+# find all the nationalities in real madrid
+real_madrid_nationalities = real_madrid['nationality']
+ic(real_madrid_nationalities.value_counts())
